@@ -36,3 +36,15 @@
 
 ## check novelty
   `python novelty.py dataset.smi smiles.smi`
+
+
+#### 20191219
+1. 经过input_layer， 向量为k * nodes * d, 5 * nodes(30) * d(4)，
+2. 经过unstak, 已经concat之后， 全连接层输入shape为 nodes*(k * d), 30 * 20
+3 . ```list_cx = tf.unstack(c_x)
+
+                print("list_cx.shape", list_cx)  # 5*(30*4)
+                # output will be of shape n X kd
+                # concat之后输入向量变成了30*20
+                enc_hidden = fc_layer(tf.concat(list_cx, 1), k * d, activation=tf.nn.relu, scope="hidden")
+    ```
